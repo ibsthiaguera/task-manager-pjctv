@@ -1,5 +1,3 @@
-@ -0,0 +1,170 @@
-
 # task-manager-pjctv
 
 Desafio: Desenvolvimento de uma Aplicação de Gerenciamento de Tarefas
