@@ -72,16 +72,20 @@ const EditUserModal = () => {
         userSquadId: string
     ) => {
         try {
-            const response = await api.put(`/user`, {
-                headers: {
-                    Authorization: `Bearer ${token}`,
+            const response = await api.put(`/user`,
+                {
+                    id: selectedUserId,
+                    name,
+                    email,
+                    role,
+                    squad_id: userSquadId,
                 },
-                id: Number(selectedUserId),
-                name,
-                email,
-                role,
-                squad_id: Number(userSquadId),
-            })
+                {
+                    headers: {
+                        Authorization: `Bearer ${token}`,
+                    },
+                }
+            )
 
             enqueueSnackbar('User alterada com sucesso.', {
                 variant: 'success',

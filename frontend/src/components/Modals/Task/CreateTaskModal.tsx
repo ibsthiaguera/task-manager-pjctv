@@ -47,16 +47,20 @@ const CreateTaskModal = () => {
         taskUserId: string
     ) => {
         try {
-            const response = await api.post('/task', {
-                headers: {
-                    Authorization: `Bearer ${token}`,
+            const response = await api.post('/task',
+                {
+                    title,
+                    description,
+                    limit_date: limitDate,
+                    status,
+                    user_id: Number(taskUserId),
                 },
-                title,
-                description,
-                limit_date: limitDate,
-                status,
-                user_id: Number(taskUserId),
-            })
+                {
+                    headers: {
+                        Authorization: `Bearer ${token}`,
+                    },
+                }
+            )
 
             enqueueSnackbar('Task cadastrada com sucesso.', {
                 variant: 'success',

@@ -82,17 +82,21 @@ const EditTaskModal = () => {
         taskUserId: string
     ) => {
         try {
-            const response = await api.put(`/task`, {
-                headers: {
-                    Authorization: `Bearer ${token}`,
+            const response = await api.put(`/task`,
+                {
+                    id: selectedTaskId,
+                    title,
+                    description,
+                    limit_date: limitDate,
+                    status,
+                    user_id: taskUserId,
                 },
-                id: Number(selectedTaskId),
-                title,
-                description,
-                limit_date: limitDate,
-                status,
-                user_id: Number(taskUserId),
-            })
+                {
+                    headers: {
+                        Authorization: `Bearer ${token}`,
+                    },
+                }
+            )
 
             enqueueSnackbar('Task alterada com sucesso.', {
                 variant: 'success',

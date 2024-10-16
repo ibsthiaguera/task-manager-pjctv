@@ -2,8 +2,7 @@ import { Box, Button, Modal, TextField, Typography } from '@mui/material'
 import { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { RootState } from '@/redux/store'
-import { closeCreateSquadModal } from '@/redux/squad/reducer'
-import { addSquad } from '@/redux/squad/reducer'
+import { closeCreateSquadModal, addSquad } from '@/redux/squad/reducer'
 import { enqueueSnackbar } from 'notistack'
 import { api } from '@/services/api'
 import { getCookieClient } from '@/lib/cookieClient'
@@ -19,12 +18,15 @@ const CreateSquadModal = () => {
 
     const handleRegisterSquad = async (name: string) => {
         try {
-            const response = await api.post('/squad', {
-                headers: {
-                    Authorization: `Bearer ${token}`,
-                },
-                name,
-            })
+            const response = await api.post('/squad',
+                { name },
+                {
+                    headers: {
+                        Authorization: `Bearer ${token}`,
+                    },
+                }
+            )
+
             const newSquad = { id: response.data.id, name, user: [] }
 
             dispatch(addSquad(newSquad))
