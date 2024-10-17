@@ -19,7 +19,7 @@ Para instalação das dependências e execução do projeto:
 
 ```bash
 npm install
-npx-prisma-generate
+npx prisma generate
 npm run dev
 ```
 
